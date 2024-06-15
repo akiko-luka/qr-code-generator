@@ -26,7 +26,7 @@ const App = () => {
       <Header />
 
       <main>
-        <div className="align-center m-auto flex flex-col-reverse justify-center p-10 md:max-w-5xl md:flex-row">
+        <div className="align-center m-auto flex flex-col justify-center gap-8 p-10 md:max-w-5xl md:flex-row">
           <div className="mr-24 w-full md:w-1/2">
             <p>Enter your URL below to generate a QR-Code and download it.</p>
             <form id="form-gen" className="mt-4">
@@ -39,10 +39,7 @@ const App = () => {
                 className="text-gray-dark mb-5 mr-2 w-full border-2 border-gray-200 bg-light p-3 text-black focus:outline-none"
                 required
               />
-              <button
-                className={btnStyle}
-                onClick={handleGenerate}
-              >
+              <button className={btnStyle} onClick={handleGenerate}>
                 Generate
               </button>
             </form>
@@ -50,8 +47,8 @@ const App = () => {
 
           {/* QR Code image */}
           <div className="flex flex-col items-center">
-            <div className="flex h-[450px] w-[450px] items-center justify-center border-4 border-black bg-gray-200">
-              <img src={code} className="block w-[400px]" />
+            <div className="flex h-[250px] w-[250px] items-center justify-center border-4 border-black bg-gray-200 md:h-[450px] md:w-[450px]">
+              <img src={code} className="block w-[250px] md:w-[400px]" />
             </div>
             <div className="flex gap-4">
               <button className={btnStyle}>
@@ -59,12 +56,13 @@ const App = () => {
                   Download
                 </a>
               </button>
-              <button 
-              onClick={() => {
-                setUrl("");
-                setCode("");
-              }}
-              className={btnStyle}>
+              <button
+                onClick={() => {
+                  setUrl("");
+                  setCode("");
+                }}
+                className={btnStyle}
+              >
                 Clear
               </button>
             </div>
