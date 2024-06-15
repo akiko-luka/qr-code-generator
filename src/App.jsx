@@ -4,7 +4,7 @@ import QRCode from "qrcode";
 import { useState } from "react";
 
 const btnStyle =
-  "mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black";
+  "mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-gray-700 active:bg-black/50";
 
 const App = () => {
   const [url, setUrl] = useState("");
@@ -40,7 +40,7 @@ const App = () => {
                 required
               />
               <button
-                className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black"
+                className={btnStyle}
                 onClick={handleGenerate}
               >
                 Generate
@@ -54,12 +54,17 @@ const App = () => {
               <img src={code} className="block w-[400px]" />
             </div>
             <div className="flex gap-4">
-              <button className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black">
+              <button className={btnStyle}>
                 <a href={code} download={"qrcode.png"}>
                   Download
                 </a>
               </button>
-              <button className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black">
+              <button 
+              onClick={() => {
+                setUrl("");
+                setCode("");
+              }}
+              className={btnStyle}>
                 Clear
               </button>
             </div>
