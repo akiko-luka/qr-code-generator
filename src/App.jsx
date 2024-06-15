@@ -3,6 +3,9 @@ import Header from "./components/Header";
 import QRCode from "qrcode";
 import { useState } from "react";
 
+const btnStyle =
+  "mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black";
+
 const App = () => {
   const [url, setUrl] = useState("");
   const [code, setCode] = useState("");
@@ -23,8 +26,8 @@ const App = () => {
       <Header />
 
       <main>
-        <div className="align-center m-auto flex flex-col-reverse justify-center p-10 md:max-w-4xl md:flex-row">
-          <div className="mr-24 w-full md:w-2/3">
+        <div className="align-center m-auto flex flex-col-reverse justify-center p-10 md:max-w-5xl md:flex-row">
+          <div className="mr-24 w-full md:w-1/2">
             <p>Enter your URL below to generate a QR-Code and download it.</p>
             <form id="form-gen" className="mt-4">
               <input
@@ -36,14 +39,31 @@ const App = () => {
                 className="text-gray-dark mb-5 mr-2 w-full border-2 border-gray-200 bg-light p-3 text-black focus:outline-none"
                 required
               />
-              <button className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black"
-              onClick={handleGenerate}
+              <button
+                className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black"
+                onClick={handleGenerate}
               >
                 Generate
               </button>
             </form>
           </div>
-         
+
+          {/* QR Code image */}
+          <div className="flex flex-col items-center">
+            <div className="flex h-[450px] w-[450px] items-center justify-center border-4 border-black bg-gray-200">
+              <img src={code} className="block w-[400px]" />
+            </div>
+            <div className="flex gap-4">
+              <button className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black">
+                <a href={code} download={"qrcode.png"}>
+                  Download
+                </a>
+              </button>
+              <button className="mt-5 w-full border-2 border-gray-800 bg-gray-600 px-4 py-3 font-bold text-light hover:bg-black">
+                Clear
+              </button>
+            </div>
+          </div>
         </div>
       </main>
     </div>
